@@ -117,13 +117,16 @@ window.addEventListener('load', () => {
   updateCoupleCarousel();
   showImage('venue', 0);
   showImage('banquet', 0);
+});
 
-  // Автовоспроизведение музыки
+// Вместо этого — в вашем createPetalClick или отдельным слушателем:
+document.body.addEventListener('click', function initMusic() {
   const music = document.getElementById('bgMusic');
-  music.play().catch(e => {
-    console.log("Автовоспроизведение заблокировано:", e);
-    // Можно добавить кнопку "Включить музыку", если нужно
+  music.play().catch(() => {
+    console.log('Автовоспроизведение заблокировано.');
   });
+  // Отвяжем этот обработчик, чтобы не дергать play() каждый раз
+  document.body.removeEventListener('click', initMusic);
 });
 
 // === Счётчик посещений через CountAPI ===
