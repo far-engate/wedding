@@ -1,0 +1,470 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #fffaf8;
+  color: #6d4c41;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #e89ab2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* === Шапка: заменяем фон на красивый градиент === */
+.hero {
+  height: 100vh;
+  /* Убираем background-image, добавляем градиент + узор */
+  background: 
+    linear-gradient(135deg, rgba(255,245,245,0.8), rgba(255,248,245,0.7)),
+    radial-gradient(circle at 20% 30%, rgba(232, 154, 178, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(248, 193, 168, 0.1) 0%, transparent 20%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #6d4c41;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInDown 1.5s ease forwards;
+  text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  max-width: 600px;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease forwards 0.5s;
+  color: #8a6d60;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .carousel-track {
+    height: 300px;
+  }
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* === Анимация лепестков === */
+.petals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.petal {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #ffb6c1;
+  border-radius: 50% 50% 50% 0;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.petal::before, .petal::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #f8c1a8;
+  border-radius: 50%;
+}
+
+.petal::before {
+  left: -8px;
+}
+
+.petal::after {
+  top: -8px;
+  left: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg) translate(100px, -200px);
+    opacity: 0;
+  }
+}
+
+/* === Информация о паре === */
+.couple {
+  padding: 100px 0;
+  text-align: center;
+  background: #fff1eb;
+}
+
+.couple h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.couple p {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #8a6d60;
+}
+
+.pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.person {
+  width: 300px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.person img {
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #f8c1a8;
+  box-shadow: 0 5px 15px rgba(232, 154, 178, 0.2);
+}
+
+.person h3 {
+  margin: 20px 0 10px;
+  color: #e89ab2;
+}
+
+.person p {
+  color: #a87d70;
+  font-style: italic;
+}
+
+/* === Место проведения === */
+.event {
+  padding: 100px 0;
+  background: #fff8f5;
+  text-align: center;
+}
+
+.event h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #e89ab2;
+}
+
+.details {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #6d4c41;
+}
+
+.details i {
+  color: #d4af37;
+  margin-right: 10px;
+}
+
+.event .details p {
+  text-align: left;       /* выравнивание по левому краю */
+  text-indent: 1.5em;     /* красная строка в начале абзаца */
+  margin-bottom: 1em;     /* промежуток между абзацами */
+}
+
+.event .details p > i {
+  margin-left: -1.5em;    /* возвращаем иконку на левую границу */
+  margin-right: 0.5em;     /* пробел между иконкой и текстом */
+  vertical-align: middle;  /* чтобы иконка центрировалась по высоте строки */
+}
+
+.countdown {
+  margin: 40px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e89ab2;
+  background: #fff1eb;
+  padding: 15px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid #f8c1a8;
+}
+
+/* === Карусель пары: простая фейдовая галерея === */
+/* контейнер сохраняет 16:9 */
+/* === Карусель пары: универсальный контейнер === */
+.couple-carousel .carousel-track {
+  position: relative;
+  width: 100%;
+  /* убираем фикс-высоту, пусть контейнер «тянется» под фото */
+  height: auto;
+
+  /* центрируем кадр по обеим осям */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #f8f2f0;
+  box-shadow: 0 8px 20px rgba(232, 154, 178, 0.2);
+
+  /* небольшой внутренний отступ, чтобы вертикальные фото не упёрлись в скругления */
+  padding: 10px 0;
+}
+
+.couple-carousel .carousel-track img {
+  position: absolute;       /* для вашей fade-логики */
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  /* ключевые параметры для любых пропорций */
+  width: 100%;              /* растягиваем по ширине контейнера */
+  height: auto;             /* высота подстраивается */
+  max-height: 80vh;         /* не выше 80% высоты экрана */
+  object-fit: contain;      /* вписываем фото целиком, без обрезки */
+}
+
+.couple-carousel .carousel-track img.active {
+  opacity: 1;
+  position: relative;       /* поверх фона */
+}
+
+.couple-carousel .carousel-container {
+  position: relative;
+  padding: 0 40px; /* резерв по бокам для стрелок */
+}
+
+/* сами стрелки */
+.couple-carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  color: #e89ab2;
+  border: 1px solid #e89ab2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;       /* поверх всего */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+}
+.couple-carousel .carousel-btn:hover {
+  background: #e89ab2;
+  color: white;
+}
+
+/* левая и правая кнопки выносятся за пределы изображения */
+.couple-carousel .carousel-btn.left {
+  left: 0;   /* теперь будет за padding-контейнера */
+}
+.couple-carousel .carousel-btn.right {
+  right: 0;
+}
+
+/* Центрируем заголовок и даём отступы сверху/снизу */
+.couple-carousel h2 {
+  text-align: center;       /* выравниваем по центру строки */
+  margin: 60px 0 40px;      /* 60px сверху, 0 — по бокам, 40px снизу */
+  font-size: 2.5rem;        /* по желанию — перекалибруйте размер */
+  color: #e89ab2;           /* тот же цвет, что у других заголовков */
+}
+
+/* === Карусель с плавной анимацией === */
+.venue-photos h3 {
+  color: #e89ab2;
+  margin: 30px 0 20px;
+  font-size: 1.6rem;
+}
+
+.gallery-container {
+  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(232, 154, 178, 0.2);
+}
+
+.gallery img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+}
+
+.gallery img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* === Стрелки === */
+.carousel-btn {
+  background: rgba(232, 154, 178, 0.9);
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.carousel-btn:hover {
+  background: #e89ab2;
+  transform: scale(1.1);
+}
+
+.carousel-btn.left {
+  margin-right: 15px;
+}
+
+.carousel-btn.right {
+  margin-left: 15px;
+}
+
+/* === Карта === */
+.map-section {
+  padding: 80px 0;
+  background: #fffaf8;
+  text-align: center;
+}
+
+.map-section h2 {
+  color: #e89ab2;
+  margin-bottom: 10px;
+}
+
+#yandex-map {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(232, 154, 178, 0.15);
+}
+
+/* === Футер === */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  background: #fff8f5;
+  color: #aaa0a5;
+  font-size: 0.9rem;
+}
+
+/* === Адаптивность === */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+  .pair {
+    flex-direction: column;
+    align-items: center;
+  }
+  .person {
+    width: 250px;
+  }
+  .event, .couple {
+    padding: 60px 0;
+  }
+  .carousel-btn {
+    padding: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .gallery {
+    height: 300px;
+  }
+}
