@@ -337,7 +337,7 @@ h1, h2, h3 {
   color: #e89ab2;           /* тот же цвет, что у других заголовков */
 }
 
-/* === Карусель с плавной анимацией === */
+/* === Карусель с плавной анимацией (venue & banquet): показываем весь кадр === */
 .venue-photos h3 {
   color: #e89ab2;
   margin: 30px 0 20px;
@@ -346,36 +346,40 @@ h1, h2, h3 {
 
 .gallery-container {
   position: relative;
-  max-width: 800px;
+  max-width: 100%;        /* растягиваем на всю ширину родителя */
   margin: 20px auto;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 0 40px;        /* место под стрелки */
+  overflow: hidden;
 }
 
 .gallery {
   position: relative;
   width: 100%;
-  height: 400px;
-  overflow: hidden;
+  height: auto;           /* контейнер подстраивается под фото */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f2f0;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(232, 154, 178, 0.2);
+  box-shadow: 0 10px 25px rgba(232,154,178,0.2);
+  padding: 10px 0;
 }
 
 .gallery img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
+  position: absolute;     /* для плавного появления */
+  width: auto;            /* сохраняем пропорции */
+  height: 100%;           /* заполняем по высоте контейнера */
+  max-width: 100%;
+  object-fit: contain;    /* показываем весь кадр без обрезки */
   opacity: 0;
   transition: opacity 1.2s ease-in-out;
-  z-index: 1;
 }
 
 .gallery img.active {
+  position: relative;
   opacity: 1;
   z-index: 2;
 }
@@ -463,23 +467,5 @@ footer {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
-  }
-  .gallery {
-    height: 300px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Отступ контейнера по бокам = 20px, поэтому убираем по 20px с каждой стороны */
-  .gallery-container {
-    margin: 0 -20px;
-    width: calc(100% + 40px);
-    max-width: none;
-    padding: 0;
-  }
-
-  /* Если нужно чуть уменьшить высоту карусели */
-  .gallery {
-    height: 300px; /* или любой другой размер */
   }
 }
