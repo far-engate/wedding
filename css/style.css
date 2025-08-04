@@ -468,3 +468,18 @@ footer {
     height: 300px;
   }
 }
+
+@media (max-width: 768px) {
+  /* Отступ контейнера по бокам = 20px, поэтому убираем по 20px с каждой стороны */
+  .gallery-container {
+    margin: 0 -20px;
+    width: calc(100% + 40px);
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Если нужно чуть уменьшить высоту карусели */
+  .gallery {
+    height: 300px; /* или любой другой размер */
+  }
+}
