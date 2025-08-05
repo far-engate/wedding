@@ -344,6 +344,7 @@ h1, h2, h3 {
   font-size: 1.6rem;
 }
 
+/* === Общие стили для всех трековых галерей (couple, venue, banquet) === */
 .gallery-container {
   position: relative;
   width: 100%;
