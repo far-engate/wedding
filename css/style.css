@@ -346,22 +346,22 @@ h1, h2, h3 {
 
 .gallery-container {
   position: relative;
-  max-width: 100%;        /* растягиваем на всю ширину родителя */
+  width: 100%;
+  max-width: 100%;
   margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 40px;        /* место под стрелки */
+  display: grid;            /* упростили — grid центрирует и контейнер, и img */
+  place-items: center;
+  padding: 0 40px;          /* место под стрелки */
   overflow: hidden;
 }
 
 .gallery {
   position: relative;
   width: 100%;
-  height: auto;           /* контейнер подстраивается под фото */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* высота подстраивается под изображение */
+  height: auto;
+  display: grid;
+  place-items: center;
   background-color: #f8f2f0;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(232,154,178,0.2);
@@ -369,17 +369,17 @@ h1, h2, h3 {
 }
 
 .gallery img {
-  position: absolute;     /* для плавного появления */
-  width: auto;            /* сохраняем пропорции */
-  height: 100%;           /* заполняем по высоте контейнера */
-  max-width: 100%;
-  object-fit: contain;    /* показываем весь кадр без обрезки */
+  position: absolute;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;     /* показываем весь кадр */
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
+  transition: opacity 0.6s ease;
+  z-index: 1;
 }
 
 .gallery img.active {
-  position: relative;
   opacity: 1;
   z-index: 2;
 }
