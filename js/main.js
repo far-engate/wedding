@@ -77,33 +77,28 @@ function prevCouple() {
 }
 
 // === Карусель с плавной анимацией ===
+// === Карусель с плавной анимацией (venue & banquet) ===
 let indices = { venue: 0, banquet: 0 };
 const galleries = {
   venue: document.querySelectorAll('#venue img'),
   banquet: document.querySelectorAll('#banquet img')
 };
-const counts = { venue: galleries.venue.length, banquet: galleries.banquet.length };
 
-function showImage(group, index) {
-  galleries[group].forEach(img => {
-    img.classList.remove('active');
-    img.style.zIndex = '1';
+// Новая универсальная функция обновления
+function updateGallery(group) {
+  galleries[group].forEach((img, i) => {
+    img.classList.toggle('active', i === indices[group]);
   });
-  const current = galleries[group][index];
-  current.style.zIndex = '2';
-  setTimeout(() => {
-    current.classList.add('active');
-  }, 10);
 }
 
 function nextImage(group) {
-  indices[group] = (indices[group] + 1) % counts[group];
-  showImage(group, indices[group]);
+  indices[group] = (indices[group] + 1) % galleries[group].length;
+  updateGallery(group);
 }
 
 function prevImage(group) {
-  indices[group] = (indices[group] - 1 + counts[group]) % counts[group];
-  showImage(group, indices[group]);
+  indices[group] = (indices[group] - 1 + galleries[group].length) % galleries[group].length;
+  updateGallery(group);
 }
 
 // Автоматическая смена каждые 4 сек
@@ -114,9 +109,9 @@ setInterval(() => {
 
 // Инициализация при загрузке
 window.addEventListener('load', () => {
-  updateCoupleCarousel();
-  showImage('venue', 0);
-  showImage('banquet', 0);
+  updateCoupleCarousel();      // ваша пара-карусель
+  updateGallery('venue');      // показываем первый кадр venue
+  updateGallery('banquet');    // показываем первый кадр banquet
 });
 
 // Вместо этого — в вашем createPetalClick или отдельным слушателем:
