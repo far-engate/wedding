@@ -101,12 +101,6 @@ function prevImage(group) {
   updateGallery(group);
 }
 
-// Автоматическая смена каждые 4 сек
-setInterval(() => {
-  nextImage('venue');
-  nextImage('banquet');
-}, 4000);
-
 // Инициализация при загрузке
 window.addEventListener('load', () => {
   updateCoupleCarousel();      // ваша пара-карусель
