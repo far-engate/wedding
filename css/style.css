@@ -277,20 +277,12 @@ h1, h2, h3 {
 }
 
 .couple-carousel .carousel-track img {
-  position: absolute;       /* для вашей fade-логики */
   opacity: 0;
   transition: opacity 0.6s ease;
-
-  /* ключевые параметры для любых пропорций */
-  width: 100%;              /* растягиваем по ширине контейнера */
-  height: auto;             /* высота подстраивается */
-  max-height: 80vh;         /* не выше 80% высоты экрана */
-  object-fit: contain;      /* вписываем фото целиком, без обрезки */
 }
 
 .couple-carousel .carousel-track img.active {
   opacity: 1;
-  position: relative;       /* поверх фона */
 }
 
 .couple-carousel .carousel-container {
