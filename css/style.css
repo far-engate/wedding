@@ -445,6 +445,23 @@ footer {
   font-size: 0.9rem;
 }
 
+/* === Соотношение сторон 16:9 для карусели == */
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.aspect-ratio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* === Адаптивность === */
 @media (max-width: 768px) {
   .hero h1 {
