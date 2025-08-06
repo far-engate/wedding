@@ -48,62 +48,61 @@ setInterval(() => {
 }, 1000);
 
 // === Универсальная карусель для всех слайдеров ===
-document.addEventListener('DOMContentLoaded', function () {
-  const carousels = document.querySelectorAll('.carousel-wrapper');
-
-  carousels.forEach(carousel => {
-    const track = carousel.querySelector('.carousel-track');
-    const images = track.querySelectorAll('img');
-    const dotsContainer = carousel.querySelector('.carousel-indicators');
-    const leftBtn = carousel.querySelector('.carousel-btn.left');
-    const rightBtn = carousel.querySelector('.carousel-btn.right');
-
-    if (images.length === 0) return;
-
-    let currentIndex = 0;
-
-    // Создание индикаторов
-    if (dotsContainer) {
-      images.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-      });
-    }
-
-    // Обновление активного слайда
-    function updateCarousel() {
-      images.forEach((img, i) => {
-        img.classList.toggle('active', i === currentIndex);
-      });
-
-      const dots = dotsContainer?.querySelectorAll('.dot');
-      dots?.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
-    }
-
-    function goToSlide(index) {
-      currentIndex = index;
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousels = document.querySelectorAll('.carousel-wrapper');
+  
+    carousels.forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const images = track.querySelectorAll('img');
+      const dotsContainer = carousel.querySelector('.carousel-indicators');
+      const leftBtn = carousel.querySelector('.carousel-btn.left');
+      const rightBtn = carousel.querySelector('.carousel-btn.right');
+  
+      let currentIndex = 0;
+  
+      // Создание индикаторов
+      if (dotsContainer) {
+        images.forEach((_, i) => {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goToSlide(i));
+          dotsContainer.appendChild(dot);
+        });
+      }
+  
+      // Обновление активного слайда
+      function updateCarousel() {
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === currentIndex);
+        });
+  
+        const dots = dotsContainer?.querySelectorAll('.dot');
+        dots?.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+  
+      function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+  
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      }
+  
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+      }
+  
+      leftBtn?.addEventListener('click', prevSlide);
+      rightBtn?.addEventListener('click', nextSlide);
+  
       updateCarousel();
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateCarousel();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateCarousel();
-    }
-
-    leftBtn?.addEventListener('click', prevSlide);
-    rightBtn?.addEventListener('click', nextSlide);
-
-    updateCarousel();
+    });
   });
 
   // === Автовоспроизведение музыки при первом клике ===
