@@ -286,8 +286,10 @@ h1, h2, h3 {
 }
 
 .couple-carousel .carousel-container {
-  position: relative;
-  padding: 0 40px; /* резерв по бокам для стрелок */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 /* сами стрелки */
@@ -304,9 +306,10 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;       /* поверх всего */
+  z-index: 10;       /* поверх всего */
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: background 0.2s;
+  pointer-events: all;
 }
 .couple-carousel .carousel-btn:hover {
   background: #e89ab2;
@@ -315,10 +318,12 @@ h1, h2, h3 {
 
 /* левая и правая кнопки выносятся за пределы изображения */
 .couple-carousel .carousel-btn.left {
-  left: 0;   /* теперь будет за padding-контейнера */
+  position: static;
+  transform: none;
 }
 .couple-carousel .carousel-btn.right {
-  right: 0;
+  position: static;
+  transform: none;
 }
 
 /* Центрируем заголовок и даём отступы сверху/снизу */
