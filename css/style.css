@@ -393,15 +393,29 @@ footer {
   .event, .couple {
     padding: 60px 0;
   }
+  .carousel-wrapper h3 {
+    font-size: 1.4rem;
+  }
+  
+  /* Уменьшаем размер кнопок стрелок */
   .carousel-btn {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
+
+  /* Уменьшаем внутренний отступ вокруг карусели */
   .carousel-container {
-    padding: 0 30px;
+    padding: 0 20px; /* Меньше отступов для мобильных */
   }
-  .carousel-wrapper h3 {
-    font-size: 1.4rem;
+
+  /* Убираем фиксированную высоту у трека */
+  .carousel-track {
+    max-height: 90vh; /* Допустимая высота для мобильных */
+  }
+
+  /* Корректируем размеры изображений */
+  .carousel-track img {
+    max-height: 90vh; /* Изображения не должны быть выше экрана */
   }
 }
